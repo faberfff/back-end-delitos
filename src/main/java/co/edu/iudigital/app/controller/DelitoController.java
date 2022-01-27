@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.iudigital.app.dto.DelitoDto;
+import co.edu.iudigital.app.exception.RestException;
 import co.edu.iudigital.app.model.Delito;
 import co.edu.iudigital.app.service.iface.IDelitoService;
 import io.swagger.annotations.Api;
@@ -40,59 +41,61 @@ import io.swagger.annotations.Tag;
 /*TODO: COLOCAR ENDPOINTS CON RESPONSEENTITY<>*/
 public class DelitoController {
 	
-	
 	private static final Logger log = LoggerFactory.getLogger(DelitoController.class);
-	
+
 	@Autowired
 	private IDelitoService delitoService;
-	
-	@ApiOperation(value = "Obtiene todos los delitos",
-			response = DelitoDto.class,
+
+	@ApiOperation(value = "Obtiene todos los delitos", 
+			response = DelitoDto.class, 
 			responseContainer = "List",
 			produces = "aplication/json",
 			httpMethod = "GET")
-	
+
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<DelitoDto> index(){
-		log.info("Inicion de index controller");
+	public List<DelitoDto> index() {
+		log.info("Inicio index controller");
 		return delitoService.findAll();
-	
-		/**
-		
+
+	}
+
 	@ApiOperation(value = "Obtiene un delito por su id",
 			response = Delito.class,
 			produces = "aplication/json",
 			httpMethod = "GET")
+
+	@GetMapping("/code/{id}")
 	@ResponseStatus(code = HttpStatus.OK)
-	@GetMapping("/delito/{id}")
-	public Delito show(@PathVariable final Long id) { //TODO: RETORNAR UN DELITO
+	public Delito show(@PathVariable final Long id) {// TODO: RETPRNA DELITODTO
+
 		return delitoService.findById(id);
-		
+
 	}
-	
+
 	@ApiOperation(value = "Guarda un delito",
 			response = Delito.class,
 			produces = "aplication/json",
-			HttpMethod = "POST")
+			httpMethod = "POST")
+
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping
-	public Delito create(@RequestBody @Valid Delito delito) {
-		
+	public Delito create(@RequestBody @Valid Delito delito) { // TODO: RETPRNAR DELITODTO
+
 		return delitoService.save(delito);
-		
-	}
-	
-	@ApiOperation(value = "Elimina un delito por id",
-			produces = "aplication/json",
-			httpMethod = "POST")
-	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	@DeleteMapping("/delito/{id}")
-	public void delete(@PathVariable Long id) {
-		delitoService.delete(id);
-	}*/
-	
-		
+
 	}
 
+	@ApiOperation(value = "Elimina un delito por su id",
+			produces = "aplication/json",
+			httpMethod = "POST")
+
+	@DeleteMapping("/delito/{id}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void delete(@PathVariable Long id) throws RestException { // TODO: RETPRNA DELITODTO
+
+	    delitoService.delete(id);
+    
+	}
 }
+
