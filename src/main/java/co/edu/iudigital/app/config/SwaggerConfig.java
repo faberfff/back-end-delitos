@@ -42,7 +42,7 @@ public class SwaggerConfig {
 				"https://iudigital.edu.co", 
 				new Contact(
 						"Faber Fernández",
-						"https://iudigital.edu.co",
+						"https://faber.edu.co",
 						"faverfff@gmail.com"
 						),
 				"Apache 2.0",

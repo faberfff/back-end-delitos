@@ -9,7 +9,7 @@ import co.edu.iudigital.app.model.Usuario;
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
 	
-/*SELECT * FROM usuarios WHERE nombre='julio' AND apellido='martinez';
+/*SELECT * FROM usuarios WHERE nombre='faber' AND apellido='fernandez';
 	
 	public Usuario findByNombreAndApellido(String nombre, String apellido);
 	
@@ -20,7 +20,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
 	 * SELECT * FROM delitos d 
 	 * INNER JOIN usuarios u 
 	 * ON d.usuarios_id = u.id 
-	 * WHERE u.nombre = 'julio';
+	 * WHERE u.nombre = 'faber';
 	 */
 	/*@Query(value = "SELECT * FROM delitos d "
 			+ "INNER JOIN usuarios u ON d.usuarios_id = u.id "
